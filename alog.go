@@ -41,11 +41,9 @@ func New(w io.Writer) *Alog {
 func (al Alog) Start() {
 
 	for {
-		select {
-		case <-al.msgCh:
-			msg := <-al.msgCh
-			go al.write(msg, nil)
-		}
+
+		msg := <-al.msgCh
+		go al.write(msg, nil)
 	}
 }
 
